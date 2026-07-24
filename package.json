@@ -6,7 +6,8 @@
     "dev": "next dev",
     "dev:clean": "rm -rf .next && next dev",
     "build": "next build",
-    "start": "next start",
+    "postbuild": "rm -rf build && cp -r out build",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {

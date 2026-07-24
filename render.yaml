@@ -1,0 +1,5 @@
+services:
+  - type: static
+    name: marriage-invitation
+    buildCommand: npm install && npm run build
+    staticPublishPath: out
