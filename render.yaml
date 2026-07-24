@@ -1,6 +1,7 @@
 services:
   - type: web
     name: nikah-invitation
-    runtime: static
+    runtime: node
+    plan: free
     buildCommand: npm install && npm run build
-    staticPublishPath: out
+    startCommand: npx serve -s out -l 3000
