@@ -1,1 +1,1 @@
-web: serve -s out -l $PORT
+web: node server.js
