@@ -83,6 +83,9 @@ export const CALENDAR = {
 };
 
 export const AUDIO = {
-  src: "/audio/wedding-nasheed.mp3",
+  sources: [
+    { src: "/audio/wedding-nasheed.webm", type: "audio/webm" },
+    { src: "/audio/wedding-nasheed.mp3", type: "audio/mpeg" },
+  ],
   volume: 0.35,
 };

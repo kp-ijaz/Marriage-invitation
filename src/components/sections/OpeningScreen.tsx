@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { LOGO } from "@/lib/constants";
+import { requestMusicPlay } from "@/lib/music";
 
 /**
  * M & A logo welcome — short cinematic hold, then handoff to Hero.
@@ -16,14 +17,25 @@ export default function OpeningScreen() {
   useEffect(() => {
     setMounted(true);
     setVisible(true);
+  }, []);
 
-    const timer = setTimeout(
-      () => setVisible(false),
-      shouldReduceMotion ? 400 : 3000,
-    );
+  const dismiss = () => {
+    requestMusicPlay();
+    setVisible(false);
+  };
 
-    return () => clearTimeout(timer);
-  }, [shouldReduceMotion]);
+  useEffect(() => {
+    if (!visible) return;
+
+    if (shouldReduceMotion) {
+      const timer = window.setTimeout(() => setVisible(false), 400);
+      return () => window.clearTimeout(timer);
+    }
+
+    const timer = window.setTimeout(() => setVisible(false), 8000);
+
+    return () => window.clearTimeout(timer);
+  }, [visible, shouldReduceMotion]);
 
   if (!mounted) {
     return null;
@@ -33,14 +45,23 @@ export default function OpeningScreen() {
     <AnimatePresence>
       {visible && (
         <motion.section
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-warm-white"
+          className="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center overflow-hidden bg-warm-white"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{
             duration: shouldReduceMotion ? 0.25 : 0.9,
             ease: [0.4, 0, 0.2, 1],
           }}
-          aria-hidden
+          onPointerDown={dismiss}
+          role="button"
+          tabIndex={0}
+          aria-label="Tap to open invitation and play music"
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              dismiss();
+            }
+          }}
         >
           <div className="opening-bg-layer" />
           {!shouldReduceMotion && (
@@ -71,8 +92,13 @@ export default function OpeningScreen() {
               width={1024}
               height={665}
               priority
-              className="opening-logo opening-calligraphy-glow"
+              className="opening-logo opening-calligraphy-glow pointer-events-none"
             />
+            {!shouldReduceMotion && (
+              <p className="opening-tap-hint mt-8 text-center font-body text-sm tracking-[0.22em] text-charcoal/55 uppercase">
+                Tap to open
+              </p>
+            )}
           </motion.div>
         </motion.section>
       )}
