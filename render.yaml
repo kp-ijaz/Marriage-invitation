@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: nikah-invitation
-    runtime: node
-    buildCommand: npm install && npm run build
