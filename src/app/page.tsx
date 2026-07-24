@@ -10,10 +10,11 @@ import Footer from "@/components/sections/Footer";
 import FloatingPetals from "@/components/ui/FloatingPetals";
 import LocationJump from "@/components/ui/LocationJump";
 import MusicToggle from "@/components/ui/MusicToggle";
+import MusicProvider from "@/components/providers/MusicProvider";
 
 export default function Home() {
   return (
-    <>
+    <MusicProvider>
       <main className="paper-grain">
         <OpeningScreen />
         <Hero />
@@ -31,6 +32,6 @@ export default function Home() {
         <LocationJump />
         <MusicToggle />
       </div>
-    </>
+    </MusicProvider>
   );
 }

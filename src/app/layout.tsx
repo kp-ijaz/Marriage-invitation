@@ -72,6 +72,14 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${inter.variable} ${scheherazade.variable} ${greatVibes.variable}`}
     >
+      <head>
+        <link
+          rel="preload"
+          href="/audio/wedding-nasheed.mp3"
+          as="audio"
+          type="audio/mpeg"
+        />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );

@@ -64,7 +64,7 @@ export const TIMELINE = [{ time: "11:30 AM", title: "Nikah Ceremony" }];
 export const CONTACTS = {
   familyContact: "+91 9645755777",
   groomWhatsApp: "+91 9645755777",
-  whatsApp: "+91 9645755777",
+  whatsApp: "+91 97451 58081",
 };
 
 export const LOCATION = {

@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useMusic } from "@/components/providers/MusicProvider";
 import { LOGO } from "@/lib/constants";
-import { requestMusicPlay } from "@/lib/music";
 
 /**
- * M & A logo welcome — short cinematic hold, then handoff to Hero.
+ * M & A logo welcome — tap to enter and hear the nasheed.
  */
 export default function OpeningScreen() {
+  const { startMusic } = useMusic();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -20,22 +21,9 @@ export default function OpeningScreen() {
   }, []);
 
   const dismiss = () => {
-    requestMusicPlay();
+    startMusic();
     setVisible(false);
   };
-
-  useEffect(() => {
-    if (!visible) return;
-
-    if (shouldReduceMotion) {
-      const timer = window.setTimeout(() => setVisible(false), 400);
-      return () => window.clearTimeout(timer);
-    }
-
-    const timer = window.setTimeout(() => setVisible(false), 8000);
-
-    return () => window.clearTimeout(timer);
-  }, [visible, shouldReduceMotion]);
 
   if (!mounted) {
     return null;
@@ -52,7 +40,7 @@ export default function OpeningScreen() {
             duration: shouldReduceMotion ? 0.25 : 0.9,
             ease: [0.4, 0, 0.2, 1],
           }}
-          onPointerDown={dismiss}
+          onClick={dismiss}
           role="button"
           tabIndex={0}
           aria-label="Tap to open invitation and play music"
@@ -66,7 +54,7 @@ export default function OpeningScreen() {
           <div className="opening-bg-layer" />
           {!shouldReduceMotion && (
             <motion.div
-              className="opening-shimmer-layer"
+              className="opening-shimmer-layer pointer-events-none"
               initial={{ x: "-35%" }}
               animate={{ x: "35%" }}
               transition={{ duration: 2.4, ease: "easeInOut" }}
@@ -74,7 +62,7 @@ export default function OpeningScreen() {
           )}
 
           <motion.div
-            className="relative z-10 flex flex-col items-center"
+            className="pointer-events-none relative z-10 flex flex-col items-center"
             initial={
               shouldReduceMotion
                 ? { opacity: 1, scale: 1 }
@@ -92,7 +80,7 @@ export default function OpeningScreen() {
               width={1024}
               height={665}
               priority
-              className="opening-logo opening-calligraphy-glow pointer-events-none"
+              className="opening-logo opening-calligraphy-glow"
             />
             {!shouldReduceMotion && (
               <p className="opening-tap-hint mt-8 text-center font-body text-sm tracking-[0.22em] text-charcoal/55 uppercase">
