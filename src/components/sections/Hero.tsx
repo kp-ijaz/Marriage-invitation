@@ -16,17 +16,23 @@ import {
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { COUPLE, EVENT, HERO, OPENING } from "@/lib/constants";
 
-function formatDisplayName(name: string) {
-  const normalized = name.trim().toLowerCase();
-  return {
-    initial: normalized.charAt(0).toUpperCase(),
-    rest: normalized.slice(1),
-  };
+function StyledCoupleName({ name }: { name: string }) {
+  const words = name.trim().split(/\s+/);
+
+  return (
+    <h1 className="couple-name couple-name-gold">
+      {words.map((word, wordIndex) => (
+        <span key={`${word}-${wordIndex}`} className="couple-name-word">
+          {wordIndex > 0 ? "\u00A0" : null}
+          <span className="couple-name-initial">{word.charAt(0).toUpperCase()}</span>
+          <span className="couple-name-rest">{word.slice(1).toLowerCase()}</span>
+        </span>
+      ))}
+    </h1>
+  );
 }
 
 export default function Hero() {
-  const brideName = formatDisplayName(COUPLE.bride);
-  const groomName = formatDisplayName(COUPLE.groom);
   return (
     <section
       id="hero"
@@ -69,15 +75,9 @@ export default function Hero() {
 
         <FadeIn delay={0.25} duration={1.2} scale>
           <div className="couple-name-stack mt-12 sm:mt-16">
-            <h1 className="couple-name couple-name-gold">
-              <span className="couple-name-initial">{brideName.initial}</span>
-              <span className="couple-name-rest">{brideName.rest}</span>
-            </h1>
+            <StyledCoupleName name={COUPLE.groom} />
             <OrnamentalDivider className="couple-divider sm:my-8" />
-            <h1 className="couple-name couple-name-gold">
-              <span className="couple-name-initial">{groomName.initial}</span>
-              <span className="couple-name-rest">{groomName.rest}</span>
-            </h1>
+            <StyledCoupleName name={COUPLE.bride} />
           </div>
         </FadeIn>
 

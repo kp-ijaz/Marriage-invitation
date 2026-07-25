@@ -1,7 +1,7 @@
 export const COUPLE = {
   bride: "Muhsina Khalid",
   groom: "Ajmal",
-  shortName: "Muhsina & Ajmal",
+  shortName: "Ajmal & Muhsina Khalid",
 };
 
 export const OPENING = {
@@ -18,14 +18,14 @@ export const CREST = {
 
 export const INVITATION_CARD = {
   src: "/invitation/nikah-invitation-card.png",
-  filename: "muhsina-ajmal-nikah-invitation.png",
-  alt: "Nikah invitation for Muhsina Khalid and Ajmal",
+  filename: "ajmal-muhsina-khalid-nikah-invitation.png",
+  alt: "Nikah invitation for Ajmal and Muhsina Khalid",
   version: "20260721",
 };
 
 export const LOGO = {
-  src: "/logo/ma.png",
-  alt: "M & A",
+  src: "/logo/ChatGPT_Image_Jul_25__2026__10_36_02_AM-removebg-preview.png",
+  alt: "Ajmal & Muhsin Akhalid",
 };
 
 export const HERO = {
@@ -44,6 +44,11 @@ export const QURAN_VERSE = {
 };
 
 export const CLOSING_MESSAGE = "Your presence and duas will make our day truly special.";
+
+export const FOOTER = {
+  family: "With Love & Warm Regards",
+  signOff: "The P T Family, Together with All Our Beloved Families",
+};
 
 export const EVENT = {
   date: "Saturday, 22 August 2026",
@@ -64,7 +69,7 @@ export const TIMELINE = [{ time: "11:30 AM", title: "Nikah Ceremony" }];
 export const CONTACTS = {
   familyContact: "+91 9645755777",
   groomWhatsApp: "+91 9645755777",
-  whatsApp: "+91 97451 58081",
+  whatsApp: "+91 7510644714",
 };
 
 export const LOCATION = {
@@ -73,9 +78,9 @@ export const LOCATION = {
 };
 
 export const CALENDAR = {
-  title: "Nikah — Muhsina Khalid & Ajmal",
+  title: "Nikah — Ajmal & Muhsina Khalid",
   description:
-    "You are invited to witness and celebrate the blessed Nikah of Muhsina Khalid & Ajmal.",
+    "You are invited to witness and celebrate the blessed Nikah of Ajmal & Muhsina Khalid.",
   location: "SHAMS Auditorium, Azhiyur",
   start: "20260822T113000",
   end: "20260822T143000",
